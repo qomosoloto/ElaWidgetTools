@@ -147,6 +147,7 @@ void ElaNavigationBarPrivate::onTreeViewClicked(const QModelIndex& index, bool i
                     ElaNavigationRouter::getInstance()->navigationRoute(this, "onNavigationRouteBack", routeData);
                 }
                 Q_EMIT q->navigationNodeClicked(ElaNavigationType::PageNode, node->getNodeKey());
+                Q_EMIT q->navigationNodeClickedV2(ElaNavigationType::PageNode, node);
 
                 if (_footerModel->getSelectedNode())
                 {
@@ -236,6 +237,7 @@ void ElaNavigationBarPrivate::onFooterViewClicked(const QModelIndex& index, bool
             ElaNavigationRouter::getInstance()->navigationRoute(this, "onNavigationRouteBack", routeData);
         }
         Q_EMIT q->navigationNodeClicked(ElaNavigationType::FooterNode, node->getNodeKey());
+        Q_EMIT q->navigationNodeClickedV2(ElaNavigationType::FooterNode, node);
 
         if (node->getIsHasFooterPage())
         {
@@ -358,6 +360,7 @@ void ElaNavigationBarPrivate::_addStackedPage(QWidget* page, QString pageKey)
     Q_Q(ElaNavigationBar);
     page->setProperty("ElaPageKey", pageKey);
     Q_EMIT q->navigationNodeAdded(ElaNavigationType::PageNode, pageKey, page);
+
     ElaNavigationNode* node = _navigationModel->getNavigationNode(pageKey);
     QVariantMap suggestData;
     suggestData.insert("ElaNodeType", "Stacked");

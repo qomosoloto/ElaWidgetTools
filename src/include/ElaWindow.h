@@ -56,6 +56,7 @@ Q_SIGNALS:
     Q_SIGNAL void userInfoCardClicked();
     Q_SIGNAL void closeButtonClicked();
     Q_SIGNAL void navigationNodeClicked(ElaNavigationType::NavigationNodeType nodeType, QString nodeKey);
+    Q_SIGNAL void navigationNodeClickedV2(ElaNavigationType::NavigationNodeType nodeType, QString nodeKey, QWidget* page);
     Q_SIGNAL void customWidgetChanged();
 
 protected:

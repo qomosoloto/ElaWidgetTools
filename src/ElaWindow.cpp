@@ -56,6 +56,7 @@ ElaWindow::ElaWindow(QWidget* parent)
     connect(d->_navigationBar, &ElaNavigationBar::userInfoCardClicked, this, &ElaWindow::userInfoCardClicked);
     // 转发点击信号
     connect(d->_navigationBar, &ElaNavigationBar::navigationNodeClicked, this, &ElaWindow::navigationNodeClicked);
+    connect(d->_navigationBar, &ElaNavigationBar::navigationNodeClickedV2, this, &ElaWindow::navigationNodeClickedV2);
     //跳转处理
     connect(d->_navigationBar, &ElaNavigationBar::navigationNodeClicked, d, &ElaWindowPrivate::onNavigationNodeClicked);
     //新增窗口
