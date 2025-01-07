@@ -144,6 +144,7 @@ ElaNavigationType::NodeOperateReturnType ElaNavigationModel::addExpanderNode(QSt
 
 ElaNavigationType::NodeOperateReturnType ElaNavigationModel::addPageNode(QString pageTitle, QString& pageKey, ElaIconType::IconName awesome)
 {
+    qDebug() << "addPageNode";
     ElaNavigationNode* node = new ElaNavigationNode(pageTitle, _rootNode);
     node->setAwesome(awesome);
     node->setDepth(1);

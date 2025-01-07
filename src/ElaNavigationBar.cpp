@@ -22,6 +22,7 @@
 #include "ElaToolButton.h"
 #include "private/ElaNavigationBarPrivate.h"
 #include "private/ElaSuggestBoxPrivate.h"
+#include <QDebug>
 Q_PROPERTY_CREATE_Q_CPP(ElaNavigationBar, bool, IsTransparent)
 ElaNavigationBar::ElaNavigationBar(QWidget* parent)
     : QWidget{parent}, d_ptr(new ElaNavigationBarPrivate())
@@ -377,6 +378,7 @@ int ElaNavigationBar::getNodeKeyPoints(QString nodeKey) const
 
 void ElaNavigationBar::navigation(QString pageKey, bool isLogClicked)
 {
+    qDebug() << "ElaNavigationBar::navigation";
     Q_D(ElaNavigationBar);
     ElaNavigationNode* node = d->_navigationModel->getNavigationNode(pageKey);
     if (!node)

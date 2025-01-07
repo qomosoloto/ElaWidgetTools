@@ -1,9 +1,10 @@
 #include "ElaNavigationRouter.h"
 
 #include "ElaNavigationRouterPrivate.h"
-
+#include <QDebug>
 Q_SINGLETON_CREATE_CPP(ElaNavigationRouter)
 Q_PROPERTY_CREATE_Q_CPP(ElaNavigationRouter, int, MaxRouteCount)
+
 ElaNavigationRouter::ElaNavigationRouter(QObject* parent)
     : QObject{parent}, d_ptr(new ElaNavigationRouterPrivate())
 {
@@ -16,7 +17,8 @@ ElaNavigationRouter::~ElaNavigationRouter()
 {
 }
 
-ElaNavigationRouterType::NavigationRouteType ElaNavigationRouter::navigationRoute(QObject* routeObject, QString routeFunctionName, const QVariantMap& routeData, Qt::ConnectionType connectionType)
+ElaNavigationRouterType::NavigationRouteType ElaNavigationRouter::navigationRoute(
+    QObject* routeObject, QString routeFunctionName, const QVariantMap& routeData, Qt::ConnectionType connectionType)
 {
     Q_D(ElaNavigationRouter);
     if (!routeObject)
@@ -43,6 +45,10 @@ ElaNavigationRouterType::NavigationRouteType ElaNavigationRouter::navigationRout
     saveData.insert("ElaRouteFunctionName", routeFunctionName);
     saveData.insert("ElaRouteData", routeData);
     saveData.insert("ElaRouteConnectionType", QVariant::fromValue<Qt::ConnectionType>(connectionType));
+    qDebug() << "save data: " << saveData;
+    /**
+     * QMap(("ElaRouteConnectionType", QVariant(Qt::ConnectionType, "AutoConnection"))("ElaRouteData", QVariant(QVariantMap, QMap(("ElaPageKey", QVariant(QStringList, ("5211df3104ec4cccab9fac0975f3984c"))))))("ElaRouteFunctionName", QVariant(QString, "onNavigationRouteBack"))("ElaRouteObject", QVariant(QObject*, ElaNavigationBarPrivate(0x85cf120))))
+     */
     d->_routeQueue.enqueue(saveData);
     return ElaNavigationRouterType::Success;
 }
@@ -63,6 +69,7 @@ void ElaNavigationRouter::navigationRouteBack()
         QString routeFunctionName = routeSaveData.value("ElaRouteFunctionName").toString();
         QVariantMap routeData = routeSaveData.value("ElaRouteData").toMap();
         Qt::ConnectionType connectionType = routeSaveData.value("ElaRouteConnectionType").value<Qt::ConnectionType>();
-        QMetaObject::invokeMethod(routeObject, routeFunctionName.toLocal8Bit().constData(), connectionType, Q_ARG(QVariantMap, routeData));
+        QMetaObject::invokeMethod(routeObject, routeFunctionName.toLocal8Bit().constData(), connectionType,
+                                  Q_ARG(QVariantMap, routeData));
     }
 }

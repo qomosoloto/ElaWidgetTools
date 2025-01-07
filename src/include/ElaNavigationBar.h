@@ -52,7 +52,7 @@ public:
 Q_SIGNALS:
     Q_SIGNAL void userInfoCardClicked();
     Q_SIGNAL void navigationNodeClicked(ElaNavigationType::NavigationNodeType nodeType, QString nodeKey);
-    Q_SIGNAL void navigationNodeClickedV2(ElaNavigationType::NavigationNodeType nodeType, ElaNavigationNode* node);
+    Q_SIGNAL void navigationNodeClickedV2(ElaNavigationType::NavigationNodeType type, ElaNavigationNode* node);
     Q_SIGNAL void navigationNodeAdded(ElaNavigationType::NavigationNodeType nodeType, QString nodeKey, QWidget* page);
 
 protected:

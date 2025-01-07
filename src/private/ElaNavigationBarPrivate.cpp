@@ -144,6 +144,7 @@ void ElaNavigationBarPrivate::onTreeViewClicked(const QModelIndex& index, bool i
                         }
                     }
                     routeData.insert("ElaPageKey", pageKeyList);
+                    routeData.insert("IsPageNode", true);
                     ElaNavigationRouter::getInstance()->navigationRoute(this, "onNavigationRouteBack", routeData);
                 }
                 Q_EMIT q->navigationNodeClicked(ElaNavigationType::PageNode, node->getNodeKey());

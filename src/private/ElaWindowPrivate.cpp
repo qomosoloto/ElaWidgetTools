@@ -216,6 +216,11 @@ void ElaWindowPrivate::onNavigationNodeAdded(ElaNavigationType::NavigationNodeTy
     }
 }
 
+QWidget* ElaWindowPrivate::getCurrentWidget()
+{
+    return _centerStackedWidget->currentWidget();
+}
+
 qreal ElaWindowPrivate::_distance(QPoint point1, QPoint point2)
 {
     return std::sqrt((point1.x() - point2.x()) * (point1.x() - point2.x()) + (point1.y() - point2.y()) * (point1.y() - point2.y()));

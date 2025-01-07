@@ -15,6 +15,7 @@ class ElaCentralStackedWidget;
 class QHBoxLayout;
 class QVBoxLayout;
 class ElaThemeAnimationWidget;
+
 class ElaWindowPrivate : public QObject
 {
     Q_OBJECT
@@ -32,6 +33,7 @@ public:
     Q_SLOT void onThemeModeChanged(ElaThemeType::ThemeMode themeMode);
     Q_SLOT void onNavigationNodeClicked(ElaNavigationType::NavigationNodeType nodeType, QString nodeKey);
     Q_SLOT void onNavigationNodeAdded(ElaNavigationType::NavigationNodeType nodeType, QString nodeKey, QWidget* page);
+    QWidget* getCurrentWidget();
 
 private:
     ElaThemeType::ThemeMode _themeMode;
