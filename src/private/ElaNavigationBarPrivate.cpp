@@ -400,7 +400,7 @@ void ElaNavigationBarPrivate::_doComponentAnimation(ElaNavigationType::Navigatio
         _doNavigationBarWidthAnimation(displayMode, isAnimation);
         if (_currentDisplayMode == ElaNavigationType::Maximal)
         {
-            _searchButton->setVisible(true);
+            _searchButton->setVisible(_isShowSearch);
             _userCard->setVisible(false);
             _navigationSuggestBox->setVisible(false);
             if (_isShowUserCard)
@@ -420,7 +420,7 @@ void ElaNavigationBarPrivate::_doComponentAnimation(ElaNavigationType::Navigatio
         {
             _handleMaximalToCompactLayout();
             _doNavigationButtonAnimation(true, isAnimation);
-            _doSearchButtonAnimation(true, isAnimation);
+            _doSearchButtonAnimation(true, isAnimation && _isShowSearch);
             _doUserButtonAnimation(true, isAnimation);
             _navigationSuggestBox->setVisible(false);
             _handleNavigationExpandState(true);
@@ -436,7 +436,7 @@ void ElaNavigationBarPrivate::_doComponentAnimation(ElaNavigationType::Navigatio
         _doUserButtonAnimation(false, isAnimation);
         _doNavigationButtonAnimation(false, isAnimation);
         _doSearchButtonAnimation(false, isAnimation);
-        _navigationSuggestBox->setVisible(true);
+        _navigationSuggestBox->setVisible(_isShowSearch);
         _currentDisplayMode = displayMode;
         _handleNavigationExpandState(false);
         break;
@@ -640,6 +640,12 @@ void ElaNavigationBarPrivate::_doNavigationButtonAnimation(bool isCompact, bool 
 
 void ElaNavigationBarPrivate::_doSearchButtonAnimation(bool isCompact, bool isAnimation)
 {
+    if (!_isShowSearch)
+    {
+        _searchButton->setVisible(false);
+        return;
+    }
+    
     if (isCompact)
     {
         QPoint navigationButtonPos = _navigationButton->pos();

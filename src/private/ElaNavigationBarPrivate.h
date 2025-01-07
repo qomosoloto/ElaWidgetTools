@@ -87,6 +87,8 @@ private:
     void _doNavigationButtonAnimation(bool isCompact, bool isAnimation);
     void _doSearchButtonAnimation(bool isCompact, bool isAnimation);
     void _doUserButtonAnimation(bool isCompact, bool isAnimation);
+
+    bool _isShowSearch{true};
 };
 
 #endif // ELANAVIGATIONBARPRIVATE_H

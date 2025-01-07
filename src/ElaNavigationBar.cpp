@@ -436,3 +436,20 @@ void ElaNavigationBar::paintEvent(QPaintEvent* event)
     }
     QWidget::paintEvent(event);
 }
+
+void ElaNavigationBar::setSearchVisible(bool visible)
+{
+    Q_D(ElaNavigationBar);
+    if (d->_isShowSearch == visible)
+        return;
+        
+    d->_isShowSearch = visible;
+    d->_searchButton->setVisible(visible && d->_currentDisplayMode == ElaNavigationType::Compact);
+    d->_navigationSuggestBox->setVisible(visible && d->_currentDisplayMode == ElaNavigationType::Maximal);
+}
+
+bool ElaNavigationBar::isSearchVisible() const
+{
+    Q_D(const ElaNavigationBar);
+    return d->_isShowSearch;
+}

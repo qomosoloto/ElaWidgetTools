@@ -49,6 +49,9 @@ public:
     void navigation(QString pageKey, bool isLogClicked = true);
     void setDisplayMode(ElaNavigationType::NavigationDisplayMode displayMode, bool isAnimation = true);
 
+    void setSearchVisible(bool visible);
+    bool isSearchVisible() const;
+
 Q_SIGNALS:
     Q_SIGNAL void userInfoCardClicked();
     Q_SIGNAL void navigationNodeClicked(ElaNavigationType::NavigationNodeType nodeType, QString nodeKey);

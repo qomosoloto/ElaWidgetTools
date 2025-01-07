@@ -23,6 +23,7 @@
 #include "private/ElaAppBarPrivate.h"
 #include "private/ElaNavigationBarPrivate.h"
 #include "private/ElaWindowPrivate.h"
+#include "ElaGlobalConfig.h"
 Q_PROPERTY_CREATE_Q_CPP(ElaWindow, int, ThemeChangeTime)
 Q_PROPERTY_CREATE_Q_CPP(ElaWindow, ElaNavigationType::NavigationDisplayMode, NavigationBarDisplayMode)
 Q_TAKEOVER_NATIVEEVENT_CPP(ElaWindow, d_func()->_appBar);
